@@ -35,14 +35,14 @@ asaca run samples/demo.wav
 <details>
 <summary>Expected terminal output</summary>
 
-```text
+
 ───────────────────────────────
 Transcription WER   : 4.8 %
 Syllable rate       : 4.2 Hz
 Mean pause duration : 0.55 s
 Prediction          : MCI   (p = 0.69)
 Full report         : reports/demo.pdf
-```
+
 </details>
 
 ---
