@@ -28,3 +28,11 @@ pip install -e ".[full]"          # full = runtime + dev + gui extras
 
 # run demo inference
 asaca run samples/demo.wav
+
+# Expected output
+# ──────────────────────────────
+# Transcription WER   : 5.2 %
+# Syllable rate       : 4.1 Hz
+# Mean pause duration : 0.58 s
+# Predicted label     : MCI   (p = 0.71) ✓
+# Full report written : reports/patient07.pdf
