@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](#)
 
-> **Tagline:** *An end-to-end toolkit that converts raw speech into multimodal neuro-cognitive biomarkers & transparent predictions.*
+> **Tagline:** *An end-to-end toolkit that converts raw speech into multimodal neuro-cognitive biomarkers, transcriptions and transparent predictions.*
 
 ---
 
