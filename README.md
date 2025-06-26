@@ -73,14 +73,16 @@ docker run --rm -v $PWD/samples:/data asaca asaca run /data/demo.wav
 
 ## 🏗️ Directory layout
 
-
+```
 speech_tools/               # audio utils, diarisation, syllable counter, …
 asaca_cognition/            # feature extractor, ML head, SHAP explainers
 config.yaml                 # editable hyper-parameters
 samples/                    # demo.wav (public example)
 checkpoints/                # wav2vec2-ft + cognitive head (via Git LFS)
 docs/                       # optional in-depth docs & figures
+```
 
+---
 
 ## 📖 Training workflow
 
@@ -90,17 +92,20 @@ docs/                       # optional in-depth docs & figures
 
 Full commands live in `docs/TRAINING.md`.
 
+---
 
 ## 🛡️ License
 
 This project is distributed under the **Apache License 2.0** – see [`LICENSE`](LICENSE).
 
+---
 
 ## 🤝 Contributing
 
 We welcome issues & pull requests!  
 Please review [`CONTRIBUTING.md`](CONTRIBUTING.md) before submitting code.
 
+---
 
 ## 📚 Citation
 
@@ -115,9 +120,12 @@ If you use **ASACA** in academic work, please cite the MSc thesis:
   month   = {September},
   url     = {https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment}
 }
+```
+
+---
 
 ## 📬 Contact & support
 
 * **Issue tracker** – preferred channel for bugs & feature requests.  
 * **E-mail** – <xyang2@tcd.ie> for private queries or security disclosures.
-
+```
