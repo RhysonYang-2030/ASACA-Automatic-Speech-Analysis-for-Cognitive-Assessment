@@ -1,42 +1,72 @@
+
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires      = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name            = "asaca"
 version         = "0.1.0"
-description     = "Automatic Speech & Cognition Assessment toolkit"
+description     = "Automatic Speech and Cognition Analysis (ASACA) – an end-to-end pipeline for clinical-grade neuro-cognitive speech biomarkers."
 readme          = "README.md"
-authors         = [{name = "Xinbo Yang", email = "xyang2@tcd.ie"}]
-license         = {file = "LICENSE"}
 requires-python = ">=3.10"
+license         = { text = "Apache-2.0" }
+authors         = [
+  { name = "Xinbo Yang", email = "xyang2@tcd.ie" }
+]
+keywords = [
+  "speech-recognition", "wav2vec2", "cognitive-assessment",
+  "neurocognitive-biomarkers", "ASR", "health-AI"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Topic :: Multimedia :: Sound/Audio :: Analysis",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: Apache Software License"
+]
+
 dependencies = [
-  "torch>=2.1",
-  "torchaudio>=2.1",
-  "transformers>=4.40",
-  "librosa>=0.10",
-  "numpy>=1.24",
-  "pandas>=2.2",
+  "numpy==1.24.4",
+  "pandas>=1.5",
+  "scipy>=1.10",
+  "joblib>=1.3",
+  "tqdm>=4.66",
+  "sympy>=1.12",
+  "torch>=2.0",
+  "torchaudio>=2.0",
   "scikit-learn>=1.4",
-  "matplotlib>=3.8",
+  "transformers>=4.38",
+  "datasets>=2.18",
+  "evaluate>=0.4",
+  "safetensors>=0.4",
   "soundfile>=0.12",
-  "praat-parselmouth>=0.4",
-  "webrtcvad>=2.0",
+  "librosa>=0.10",
+  "resampy>=0.4",
   "ctc-segmentation>=1.7",
+  "ctc_decoder @ git+https://github.com/githubharald/CTCDecoder.git#subdirectory=python",
+  "webrtcvad>=2.0",
+  "praat-parselmouth>=0.4",
+  "pronouncing>=0.2",
   "pyctcdecode>=0.5",
   "jiwer>=3.0",
-  "joblib>=1.4",
-  "tqdm>=4.66",
-  "shap>=0.45",
-  "syllapy>=0.3",
-  "PyQt5>=5.15",
-  "pyyaml>=6.0"
+  "pyannote.audio>=3.1",
+  "pyannote.core>=5.0",
+  "matplotlib>=3.7",
+  "pillow>=10.2",
+  "shap>=0.44",
+  "psutil>=5.9",
+  "openpyxl>=3.1",
+  "PyYAML>=6.0"
 ]
 
 [project.optional-dependencies]
-dev  = ["pytest", "ruff", "black", "mypy", "pre-commit", "coverage"]
-gui  = ["PyQt5"]
-full = ["asaca[dev,gui]"]        # convenience extra
+gui = ["PyQt5>=5.15", "pyqtgraph>=0.13", "reportlab>=4.0"]
 
-[project.scripts]
-asaca = "speech_tools.cli:main"
+dev = ["black", "ruff", "pytest", "pre-commit"]
+
+[project.urls]
+Homepage        = "https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment"
+Documentation   = "https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment/wiki"
+Source          = "https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment"
+Tracker         = "https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment/issues"
