@@ -1,0 +1,7 @@
+.git
+.vscode
+.idea
+__pycache__/
+*.py[cod]
+datasets/
+reports/
