@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name            = "asaca"
+version         = "0.1.0"
+description     = "Automatic Speech & Cognition Assessment toolkit"
+readme          = "README.md"
+authors         = [{name = "Xinbo Yang", email = "xyang2@tcd.ie"}]
+license         = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.1",
+  "torchaudio>=2.1",
+  "transformers>=4.40",
+  "librosa>=0.10",
+  "numpy>=1.24",
+  "pandas>=2.2",
+  "scikit-learn>=1.4",
+  "matplotlib>=3.8",
+  "soundfile>=0.12",
+  "praat-parselmouth>=0.4",
+  "webrtcvad>=2.0",
+  "ctc-segmentation>=1.7",
+  "pyctcdecode>=0.5",
+  "jiwer>=3.0",
+  "joblib>=1.4",
+  "tqdm>=4.66",
+  "shap>=0.45",
+  "syllapy>=0.3",
+  "PyQt5>=5.15",
+  "pyyaml>=6.0"
+]
+
+[project.optional-dependencies]
+dev  = ["pytest", "ruff", "black", "mypy", "pre-commit", "coverage"]
+gui  = ["PyQt5"]
+full = ["asaca[dev,gui]"]        # convenience extra
+
+[project.scripts]
+asaca = "speech_tools.cli:main"
