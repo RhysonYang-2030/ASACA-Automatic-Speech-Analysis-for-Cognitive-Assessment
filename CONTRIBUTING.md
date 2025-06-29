@@ -1,96 +1,118 @@
 # Contributing to ASACA
+*A toolkit for Automatic Speech & Cognition Assessment*  
 
-First, thank you ❤️ for taking the time to contribute!  
-ASACA (Automatic Speech & Cognition Assessment) relies on the open-source community to stay reliable, transparent, and cutting-edge.
+Thank you for considering a contribution!  
+ASACA welcomes pull-requests for bug fixes, new features, documentation, and tests.
 
 ---
 
 ## Table of Contents
-1. [Code of Conduct](#code-of-conduct)
-2. [Getting Started](#getting-started)
-3. [Development Workflow](#development-workflow)
-4. [Style Guide](#style-guide)
-5. [Running the Test Suite](#running-the-test-suite)
-6. [Documentation](#documentation)
-7. [Pull-Request Checklist](#pull-request-checklist)
-8. [Releasing](#releasing)
-9. [Contact](#contact)
+1. [Ground Rules](#ground-rules)  
+2. [Project Setup](#project-setup)  
+3. [Development Workflow](#development-workflow)  
+4. [Code Style & Linting](#code-style--linting)  
+5. [Running Tests](#running-tests)  
+6. [Documentation](#documentation)  
+7. [Pull-Request Checklist](#pull-request-checklist)  
+8. [Release Process (maintainers)](#release-process-maintainers)  
+9. [Contact](#contact)  
 
 ---
 
-## Code of Conduct
-Participating in this project means you agree to abide by the
-[Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
+## Ground Rules
+* **Be kind & inclusive** – we follow the [Code of Conduct](CODE_OF_CONDUCT.md).  
+* Keep the *main* branch **green** (all tests passing).  
+* One logical change per PR.  
+* Large changes? Open an issue first so we can discuss direction.
 
 ---
 
-## Getting Started
+## Project Setup
 
 ```bash
-git clone https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
+# Clone your fork
+git clone https://github.com/<your-user>/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
 cd ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
-python -m venv .venv           # or conda create -n asaca python=3.11
-source .venv/bin/activate
-pip install -e ".[dev]"        # runtime + linters + tests
-pre-commit install             # auto-format on commit
-Development Workflow
-Step	Command / Action	Purpose
-1	git checkout -b feat/awesome-feature	Create a topic branch
-2	Code + ruff check . + pytest -q	Keep it clean & tested
-3	git add -p && git commit -m "feat: add awesome feature"	Conventional commits
-4	git push --set-upstream origin feat/awesome-feature	Push branch
-5	Open Pull Request on GitHub	PR triggers full CI
 
-Style Guide
-PEP 8 enforced by ruff (no unused imports, 120-char lines).
+# Create virtual-env
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 
-Black auto-formats code (installed in pre-commit).
+# Install dev dependencies
+pip install -e ".[dev]"          # runtime + linters + tests
+pre-commit install               # auto-format staged files
+```
 
-Docstrings follow NumPy style.
+---
 
-Type hints are mandatory for new public functions & methods.
+## Development Workflow
 
-Keep functions pure when feasible; heavy I/O belongs in CLI wrappers.
+| Step | Command / Action | Notes |
+|------|------------------|-------|
+| **1** | `git checkout -b feat/<short-description>` | Use `fix/…` for bugs. |
+| **2** | Code your change | ⌨ |
+| **3** | `ruff check .`   | Lints & auto-fixable issues. |
+| **4** | `pytest -q`      | All tests green. |
+| **5** | `git add -p` & `git commit -m "feat: …"` | Conventional commit style. |
+| **6** | `git push --set-upstream origin feat/<…>` | Push branch. |
+| **7** | Open Pull Request | PR triggers full CI. |
 
-Running the Test Suite
-bash
-Copy
-Edit
-pytest -q          # run all tests
-pytest tests/xyz.py::TestClass::test_one   # single test
-pytest --cov=asaca_cognition --cov-report=term-missing   # coverage
-Add tests for every new public API or bugfix.
+> **Tip:** commit messages should start with  
+> `feat:`, `fix:`, `docs:`, `refactor:`, `test:` or `ci:`.
 
-Documentation
-User-facing changes require updates to README.md and any relevant
-tutorial notebooks under notebooks/.
-Large additions should get a new page in docs/ (MkDocs).
+---
 
-Pull-Request Checklist
- I ran ruff check . and fixed all issues.
+## Code Style & Linting
+* **Black** – auto-format (`pre-commit` runs it).  
+* **Ruff** – static analysis; 0 errors required.  
+* **Type hints** – mandatory for new public functions/classes.  
+* Public APIs need **NumPy-style docstrings** with examples.
 
- pytest -q passes locally.
+---
 
- I added/updated unit tests.
+## Running Tests
 
- I updated docs / README examples.
+```bash
+pytest -q                      # all tests
+pytest tests/test_audio.py -k pause   # subset
+pytest --cov=asaca_cognition --cov-report=term-missing
+```
 
- I described why the change is needed in the PR body.
+Add/extend tests for every new feature or bug fix.
 
- I checked that CI passes after pushing.
+---
 
-Releasing
-Project maintainers only:
+## Documentation
+* Update **README.md** if behaviour changes or new CLI flags are added.  
+* Large additions → add a Markdown page under `docs/` and link from README.  
+* Example notebooks live in `notebooks/`; keep them lightweight (< 5 MB).
 
-bash
-Copy
-Edit
-git switch main && git pull
+---
+
+## Pull-Request Checklist
+- [ ] Code compiles and runs locally.  
+- [ ] `ruff check .` passes (no warnings).  
+- [ ] `pytest -q` passes (existing + new tests).  
+- [ ] Docs / examples updated.  
+- [ ] Linked related issue(s) in PR description (`Fixes #42`).  
+- [ ] PR follows [Ground Rules](#ground-rules).
+
+---
+
+## Release Process (maintainers)
+
+```bash
+git checkout main
+git pull
 bumpver update --patch           # or --minor / --major
-git push && git push --tags      # tag triggers PyPI & Docker publish
-Contact
-Questions? Ping the issue tracker or e-mail xyang2@tcd.ie.
+git push && git push --tags      # tag triggers PyPI + Docker publish
+```
 
-pgsql
-Copy
-Edit
+* `CI` must be green before cutting a release.  
+* Draft release notes from merged PR titles (`Generate release notes` button).
+
+---
+
+## Contact
+Open an issue for questions & proposals.  
+Security concerns? See [SECURITY.md](SECURITY.md) or e-mail **xyang2@tcd.ie**.
