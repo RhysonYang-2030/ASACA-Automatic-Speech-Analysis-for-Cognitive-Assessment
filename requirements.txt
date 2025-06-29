@@ -20,7 +20,7 @@ librosa>=0.10
 resampy>=0.4
 ctc-segmentation>=1.7
 # exposes the **ctc_decoder** module used here:contentReference[oaicite:13]{index=13}
-ctc_decoder @ git+https://github.com/githubharald/CTCDecoder.git#subdirectory=python
+ctc-decoder @ git+https://github.com/githubharald/CTCDecoder.git@6b5c3dd
 webrtcvad>=2.0               :contentReference[oaicite:14]{index=14}
 praat-parselmouth>=0.4       :contentReference[oaicite:15]{index=15}
 pronouncing>=0.2             :contentReference[oaicite:16]{index=16}
