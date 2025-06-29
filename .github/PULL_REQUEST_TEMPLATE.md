@@ -1,6 +1,5 @@
 ## Summary
-
-<!-- Explain WHAT the change does and WHY it is needed. -->
+Explain WHAT the change does and WHY it is needed.
 
 ## Type of change
 - [ ] ✨  New feature
