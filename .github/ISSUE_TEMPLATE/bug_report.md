@@ -5,7 +5,7 @@ labels: bug
 ---
 
 ## Describe the bug
-<!-- A clear and concise description of what the bug is. -->
+A clear and concise description of what the bug is.
 
 ## To Reproduce
 
@@ -14,10 +14,10 @@ Steps to reproduce the behaviour:
 2. Observe error …
 
 ## Expected behaviour
-<!-- A clear and concise description of what you expected to happen. -->
+A clear and concise description of what you expected to happen.
 
 ## Screenshots / Logs
-<!-- If applicable, add screenshots or paste relevant log output. -->
+If applicable, add screenshots or paste relevant log output.
 
 ## Environment (please complete the following information)
 
@@ -29,4 +29,4 @@ Steps to reproduce the behaviour:
 | GPU | e.g. RTX 4090, CUDA 12.1 |
 
 ## Additional context
-<!-- Add any other context about the problem here. -->
+Add any other context about the problem here.
