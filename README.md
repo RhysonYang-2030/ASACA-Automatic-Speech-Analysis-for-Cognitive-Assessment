@@ -1,5 +1,8 @@
 # ASACA – Automatic Speech Analysis for Cognitive Assessment
-
+[![CI](https://github.com/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment/actions/workflows/ci.yml/badge.svg)](../../actions) 
+[![PyPI](https://img.shields.io/pypi/v/asaca?logo=pypi)](https://pypi.org/project/asaca/) 
+[![License](https://img.shields.io/github/license/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment)](LICENSE) 
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](#)
 ![GUI](docs/img/asaca_gui.gif)
 
 ASACA is a toolkit that extracts linguistic and acoustic biomarkers from raw speech and provides an optional graphical interface for quick analysis.
