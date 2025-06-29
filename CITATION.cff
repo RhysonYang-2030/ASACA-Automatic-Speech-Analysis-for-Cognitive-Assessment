@@ -1,1 +1,15 @@
+cff-version: 1.2.0
+message: "If you use ASACA, please cite the MSc thesis below."
+title: "ASACA — Automatic Speech Analysis of Cognition Assessment"
+authors:
+  - family-names: Yang
+    given-names: Xinbo
+    affiliation: Trinity College Dublin
+date-released: "2025-09-01"
+version: "0.1.0"
+type: thesis
+thesis:
+  type: master's
+  institution: Trinity College Dublin
+repository-code: "https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment"
 
