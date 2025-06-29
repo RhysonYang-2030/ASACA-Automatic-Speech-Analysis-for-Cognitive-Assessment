@@ -59,6 +59,9 @@ asaca-cli = "asaca.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]            
+"asaca.speech_tools" = ["config.yaml"]
+
 [tool.ruff]
 [tool.ruff.lint]
 select = []
