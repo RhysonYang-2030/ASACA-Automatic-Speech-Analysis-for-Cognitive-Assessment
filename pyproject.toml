@@ -44,7 +44,7 @@ dependencies = [
   "resampy>=0.4",
   "ctc-segmentation>=1.7",
   "ctc-decoder @ git+https://github.com/githubharald/CTCDecoder.git@6b5c3dd",
-  "webrtcvad>=2.0",
+  "webrtcvad",
   "praat-parselmouth>=0.4",
   "pronouncing>=0.2",
   "pyctcdecode>=0.5",
