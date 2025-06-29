@@ -25,28 +25,6 @@ an interpretable prediction ( *HC / MCI / AD* ).
 ---
 
 ## 🚀 Quick start
-```bash
-# 1 – clone
-git clone https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
-cd ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
-
-# 2 – install (Python ≥ 3.11)
-python -m venv .venv && source .venv/bin/activate
-pip install -e .
-
-# 3 – run demo
-asaca run samples/demo.wav
-Expected console output:
-
-text
-Copy
-Edit
-Transcription WER   : 5.1 %
-Syllable rate       : 4.0 Hz
-Mean pause duration : 0.57 s
-Prediction          : MCI  (p = 0.71)
-
----
 
 ## Documentation
 Full API reference and user guide live in the [`docs/`](docs/) directory and on [Read the Docs](https://example.com/).
