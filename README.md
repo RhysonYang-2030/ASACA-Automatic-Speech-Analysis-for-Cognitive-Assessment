@@ -1,4 +1,4 @@
-# ASACA — Automatic Speech Analysis of Cognition Assessment  
+# ASACA — Automatic Speech Analysis for Cognition Assessment  
 [![CI](https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment/actions/workflows/ci.yml/badge.svg)](../../actions) 
 [![PyPI](https://img.shields.io/pypi/v/asaca?logo=pypi)](https://pypi.org/project/asaca/) 
 [![License](https://img.shields.io/github/license/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment)](LICENSE) 
