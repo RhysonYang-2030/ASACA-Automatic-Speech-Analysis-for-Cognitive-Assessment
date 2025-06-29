@@ -22,7 +22,7 @@ ctc-segmentation>=1.7
 
 ctc-decoder @ git+https://github.com/githubharald/CTCDecoder.git@6b5c3dd
 webrtcvad                  
-praat-parselmouth>    
+praat-parselmouth  
 pronouncing>=0.2            
 pyctcdecode>=0.5            
 jiwer>=3.0                   
@@ -35,7 +35,7 @@ pillow>=10.2
 shap>=0.44                  
 
 # ↓ GUI
-PyQt5>=5.15                  :
+PyQt5>=5.15                  
 pyqtgraph>=0.13
 reportlab>=4.0
 
