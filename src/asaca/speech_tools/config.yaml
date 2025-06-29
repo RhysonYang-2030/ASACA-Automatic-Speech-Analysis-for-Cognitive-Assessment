@@ -1,0 +1,40 @@
+# ── speech_tools/config.yaml ───────────────────────────────────────────────────
+# All numbers in *seconds* unless stated otherwise.
+vad:
+  posterior_th: 0.20          # posterior < 0.20 ⇒ treat as silence
+  gap_merge_sec: 0.35         # fuse speech segments whose gap < 350 ms
+  examiner_trim_sec: 0.0      # set >0.0 if you want to chop leading silence
+  energy_gate_db: -40.0      # for silence finder
+  silence_skip_sec: 1.0      # minimum leading/trailing silence to ignore
+  pitch_floor: 100                 # NEW: drives Praat intensity windowing
+
+syllable:
+  praat_rel_thresh_db: 25.0     # nuclei threshold = median(intensity) – this many dB
+  nuclei_onset_ratio: 0.75    # if nuclei count < ratio × onset count → fallback
+  min_dip_db: 2.0             # NEW: min dip between peaks
+  wer_blend_max: 0.35         # blend nuclei with text syllables only if WER < 0.35
+  ctc_conf_low: 0.80         # below this ⇒ ignore text syllables
+  ctc_conf_high: 0.90        # above this ⇒ fully trust text syllables
+  praat_min_gap_sec: 0.1      # 最小音节间隔 (秒)
+
+pause:
+  min_outside_sec: 0.30       # pause between speech chunks (global)
+  intra_min_sec: 0.10         # silence inside speech chunk flagged as hesitation
+  intra_dyn_factor: 3.0       # *median syllable gap* × factor → dynamic threshold
+  energy_gate_db: -25         # silence threshold
+
+paths:
+  diar_model: "pyannote/speaker-diarization-3.1"
+  diar_use_gpu: true         # set true if CUDA available
+
+praat:
+    enable: false          # master switch
+    exe_path: "Praat.exe"
+
+"cognition": {
+    "model_pkl": "cognition_training/classifier.pkl",
+    "dict_dir": "dicts",
+    "pretrained_processor": "epoch 27",
+    "pretrained_model": "epoch 27",
+    "feature_xlsx": "cognition_training/TUH_FV_Improved.xlsx",
+}

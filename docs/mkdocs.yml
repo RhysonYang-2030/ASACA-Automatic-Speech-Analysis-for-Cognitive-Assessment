@@ -1,0 +1,9 @@
+site_name: ASACA
+repo_url: https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
+theme: material
+plugins:
+  - search
+  - mkdocstrings
+nav:
+  - Home: index.md
+  - API: reference.md

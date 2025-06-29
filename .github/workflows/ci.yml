@@ -8,16 +8,22 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python: ["3.10", "3.11"]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python }}
-          cache: "pip"
-      - run: pip install -e ".[dev]"
-      - run: ruff check .
-      - run: pytest -q
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install .[dev]
+      - run: ruff .
+      - run: mypy src/asaca
+      - run: pytest --cov=src/asaca --cov-report=xml
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage.xml
