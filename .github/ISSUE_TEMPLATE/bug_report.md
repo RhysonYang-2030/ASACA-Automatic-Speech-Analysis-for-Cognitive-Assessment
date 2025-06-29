@@ -1,7 +1,3 @@
-<details> <summary><code>.github/ISSUE_TEMPLATE/bug_report.md</code></summary>
-markdown
-Copy
-Edit
 ---
 name: Bug report
 about: File a reproducible bug
@@ -34,4 +30,3 @@ Steps to reproduce the behaviour:
 
 ## Additional context
 <!-- Add any other context about the problem here. -->
-</details>
