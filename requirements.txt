@@ -21,21 +21,21 @@ resampy>=0.4
 ctc-segmentation>=1.7
 
 ctc-decoder @ git+https://github.com/githubharald/CTCDecoder.git@6b5c3dd
-webrtcvad                  :contentReference[oaicite:14]{index=14}
-praat-parselmouth>=0.4       :contentReference[oaicite:15]{index=15}
-pronouncing>=0.2             :contentReference[oaicite:16]{index=16}
-pyctcdecode>=0.5             # optional LM fallback
-jiwer>=3.0                   :contentReference[oaicite:17]{index=17}
-pyannote.audio>=3.1          :contentReference[oaicite:18]{index=18}
+webrtcvad                  
+praat-parselmouth>    
+pronouncing>=0.2            
+pyctcdecode>=0.5            
+jiwer>=3.0                   
+pyannote.audio>=3.1         
 pyannote.core>=5.0
 
 # ↓ Visualisation & plotting
 matplotlib>=3.7
 pillow>=10.2
-shap>=0.44                   :contentReference[oaicite:19]{index=19}
+shap>=0.44                  
 
 # ↓ GUI
-PyQt5>=5.15                  :contentReference[oaicite:20]{index=20}
+PyQt5>=5.15                  :
 pyqtgraph>=0.13
 reportlab>=4.0
 
