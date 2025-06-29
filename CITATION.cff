@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use ASACA, please cite the MSc thesis below."
-title: "ASACA — Automatic Speech Analysis of Cognition Assessment"
+title: "ASACA — Automatic Speech Analysis for Cognition Assessment"
 authors:
   - family-names: Yang
     given-names: Xinbo
