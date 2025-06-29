@@ -21,4 +21,4 @@ See the [examples](examples/) folder for a notebook demo.
 Full API reference and user guide live in the [`docs/`](docs/) directory and on [Read the Docs](https://example.com/).
 
 ## License
-Released under the MIT License.
+Released under the Apache-2.0 license.
