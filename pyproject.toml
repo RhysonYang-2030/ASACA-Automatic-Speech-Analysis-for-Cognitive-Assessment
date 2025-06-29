@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -62,7 +62,10 @@ dependencies = [
 [project.optional-dependencies]
 gui = ["PyQt5>=5.15", "pyqtgraph>=0.13", "reportlab>=4.0"]
 
-dev = ["black", "ruff", "pytest", "pre-commit"]
+dev = [
+  "black", "ruff", "pytest", "pre-commit",
+  "ctc-decoder @ git+https://github.com/githubharald/CTCDecoder.git@6b5c3dd"
+]
 
 [project.urls]
 Homepage        = "https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment"
