@@ -1,7 +1,7 @@
 # ASACA — Automatic Speech Analysis for Cognition Assessment  
-[![CI](https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment/actions/workflows/ci.yml/badge.svg)](../../actions) 
+[![CI](https://github.com/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment/actions/workflows/ci.yml/badge.svg)](../../actions) 
 [![PyPI](https://img.shields.io/pypi/v/asaca?logo=pypi)](https://pypi.org/project/asaca/) 
-[![License](https://img.shields.io/github/license/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment)](LICENSE) 
+[![License](https://img.shields.io/github/license/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment)](LICENSE) 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](#)
 
 > **An end-to-end system that converts raw speech into multimodal neuro-cognitive biomarkers, transcriptions and explainable classification results.**
@@ -24,7 +24,7 @@
 
 ```bash
 # 1 clone & editable install
-git clone https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
+git clone https://github.com/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
 cd ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
 pip install -e ".[full]"        # full = runtime + dev + gui extras
 
@@ -118,7 +118,7 @@ If you use **ASACA** in academic work, please cite the MSc thesis:
   school  = {Trinity College Dublin},
   year    = {2025},
   month   = {September},
-  url     = {https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment}
+  url     = {https://github.com/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment}
 }
 ```
 
