@@ -45,6 +45,9 @@ dependencies = [
     "openpyxl>=3.1",
     "nltk",
     "PyYAML>=6.0",
+    "pyqt5",
+    "pyqtgraph",
+    "reportlab"
 ]
 
 [project.optional-dependencies]
