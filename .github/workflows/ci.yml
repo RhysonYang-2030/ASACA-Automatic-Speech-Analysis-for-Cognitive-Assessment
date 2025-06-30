@@ -25,7 +25,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-      - run: pip install .[dev]
+      - name: Install project + dev extras
+        run: pip install -e ".[dev]" 
       - run: ruff check .
       - run: mypy src/asaca
       - run: pytest --cov=src/asaca --cov-report=xml --color=yes
