@@ -27,7 +27,7 @@ jobs:
           cache: pip
       
       - run: pip install -e .[dev]
-         working-directory: ${{ github.workspace }}
+        working-directory: ${{ github.workspace }}
       - run: ruff check .
       - run: mypy src/asaca
       - run: pytest --cov=src/asaca --cov-report=xml --color=yes
