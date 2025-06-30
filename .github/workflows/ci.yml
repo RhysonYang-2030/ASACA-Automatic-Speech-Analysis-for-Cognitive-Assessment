@@ -16,7 +16,13 @@ jobs:
         os: [windows-latest, ubuntu-latest]
         python-version: ["3.11"]
     steps:
-      - uses: actions/checkout@v4        # 不再带 path/name
+      - name: Upload coverage
+        if: always()                        
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.os }}   
+          path: coverage.xml
+
     
       - name: Debug workspace
         run: |
