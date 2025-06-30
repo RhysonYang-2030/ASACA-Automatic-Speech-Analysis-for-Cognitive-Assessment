@@ -26,8 +26,59 @@ an interpretable prediction ( *HC / MCI / AD* ).
 
 ## 🚀 Quick start
 
+Install the package from PyPI and run inference on a WAV file:
+
+```bash
+pip install asaca
+asaca-cli infer path/to/audio.wav -o out/
+```
+
+Alternatively install in editable mode for development:
+
+```bash
+git clone https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
+cd ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
+pip install -e .[dev]
+```
+
+The CLI outputs recognised text along with a PDF report and JSON file in the
+specified output directory.
+
+## Usage
+
+![Pipeline](docs/img/asaca_pipeline.svg)
+
+```text
+asaca/
+├── src/             # library code
+├── tests/           # unit tests
+├── docs/            # MkDocs documentation
+├── examples/        # example notebooks and data
+└── notebooks/       # tutorial notebooks
+```
+
+Run `asaca-cli --help` to see all commands including feature extraction.
+
 ## Documentation
 Full API reference and user guide live in the [`docs/`](docs/) directory and on [Read the Docs](https://example.com/).
 
+## Docker
+
+Build the image and run inference in an isolated environment:
+
+```bash
+docker build -t asaca .
+docker run --rm -v "$PWD:/data" asaca asaca-cli infer /data/audio.wav
+```
+
+The container entrypoint defaults to `asaca-cli`.
+
 ## License
 Released under the Apache-2.0 license.
+
+## Citation
+If you use ASACA in your research, please cite the project using the
+[CITATION.cff](CITATION.cff) file.
+
+## Contact
+Maintainer: [Xinbo Yang](mailto:xyang2@tcd.ie)
