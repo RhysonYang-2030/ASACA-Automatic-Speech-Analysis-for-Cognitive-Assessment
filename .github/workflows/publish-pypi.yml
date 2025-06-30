@@ -15,6 +15,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
+          
 
       - run: pip install build
       - run: python -m build  # creates dist/*.whl + dist/*.tar.gz
@@ -23,3 +24,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
+          verbose: true
