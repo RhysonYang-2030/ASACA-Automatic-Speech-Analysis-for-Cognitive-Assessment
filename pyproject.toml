@@ -54,7 +54,7 @@ dependencies = [
 # GPU-enabled extras
 gpu = ["torch", "torchaudio", "pyannote.audio"]
 # Development and testing
-dev = ["ruff", "black", "pre-commit", "pytest", "pytest-cov", "mypy"]
+dev = ["ruff", "black", "pre-commit", "pytest", "pytest-cov", "mypy","pytest-qt",""PyQt5"]
 # Documentation build
 docs = ["mkdocs-material", "mkdocstrings[python]"]
 
