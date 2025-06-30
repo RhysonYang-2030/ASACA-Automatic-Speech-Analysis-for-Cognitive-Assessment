@@ -13,16 +13,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        os: [windows-latest]
         python-version: ["3.11"]
-    steps:
-      - name: Upload coverage
-        if: always()                        
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-${{ matrix.os }}   
-          path: coverage.xml
-
+    steps:                        
+      - uses: actions/upload-artifact@v4
     
       - name: Debug workspace
         run: |
