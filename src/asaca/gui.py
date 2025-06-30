@@ -728,7 +728,7 @@ class MainWindow(QMainWindow):
                 processor_path = cfg.get("pretrained_processor", self.cfg["pretrained_processor"]),
                 asr_model_path = cfg.get("pretrained_model",     self.cfg["pretrained_model"]),
                 device         = self.device,
-                feature_xlsx=Path("cognition_training/TUH_FV.xlsx")
+                feature_xlsx=Path("cognition_training/TUH_FV_Improved.xlsx")
             )
             print("[Cognition] classifier ready")
         except Exception as e:
