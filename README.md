@@ -7,7 +7,7 @@
 
 ASACA is an **end-to-end toolkit** that transforms raw speech into
 multimodal biomarkers — lexical, prosodic and pause-based — and returns
-an interpretable prediction ( *HC / MCI / AD* ).
+an interpretable prediction ( *HC / MCI / AD* ) and low Word error rate transcriptions (WER <0.02)).
 
 ---
 
