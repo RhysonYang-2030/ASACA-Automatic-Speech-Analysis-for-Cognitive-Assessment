@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ work ]
+    branches: [ updated_structrue ]
   pull_request:
-    branches: [ work ]
+    branches: [ updated_structrue ]
 
 
 
