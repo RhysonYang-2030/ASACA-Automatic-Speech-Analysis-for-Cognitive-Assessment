@@ -54,8 +54,8 @@ def loadConfig():
         return config
     else:
         return {
-            "pretrained_processor": "epoch 27",
-            "pretrained_model": "epoch 27",
+            "pretrained_processor": "Models",
+            "pretrained_model": "Models",
             "output_dir": "output"
         }
 
