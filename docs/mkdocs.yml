@@ -1,5 +1,5 @@
 site_name: ASACA
-repo_url: https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
+repo_url: https://github.com/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
 theme: material
 plugins:
   - search
