@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "HEAD   = $(git rev-parse --short HEAD)"
           echo "BRANCH = $(git rev-parse --abbrev-ref HEAD)"
-          ls -al | head
+          
 
       - uses: actions/setup-python@v5
         with:
