@@ -8,6 +8,7 @@ sympy>=1.12
 # ML / deep-learning
 torch
 torchaudio
+torchvision
 scikit-learn>=1.4
 transformers>=4.38
 datasets>=2.18
