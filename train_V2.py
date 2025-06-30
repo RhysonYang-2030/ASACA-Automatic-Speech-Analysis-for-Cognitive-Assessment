@@ -27,12 +27,10 @@ from transformers import (
     TrainerCallback,
     EarlyStoppingCallback,  # 引入 EarlyStoppingCallback
 )
-
-from jiwer import wer as jiwer_wer
+from evaluate import load
 
 import syllapy
 
-os.environ["TRANSFORMERS_OFFLINE"] = "1"
 # 指定调试输出文件
 DEBUG_LOG_FILE = "debug_output_train.txt"
 
@@ -149,30 +147,20 @@ class DataCollatorCTCWithPadding:
         return batch
 
 # -------------------- Metrics --------------------
-# -------------------- Metrics --------------------
+wer_metric = load("wer")
 def get_compute_metrics(processor):
-    """
-    使用 jiwer 计算 WER，完全本地计算，无需网络。
-    """
     def compute_metrics(pred):
-        # 1) 预测转文字
-        pred_ids = np.argmax(pred.predictions, axis=-1)
-        pred_str = processor.tokenizer.batch_decode(pred_ids,
-                                                   skip_special_tokens=True)
-
-        # 2) 标签转文字（去掉 -100）
-        labels = pred.label_ids.copy()
+        logits = pred.predictions
+        labels = pred.label_ids
+        pred_ids = np.argmax(logits, axis=-1)
         labels[labels == -100] = processor.tokenizer.pad_token_id
-        label_str = processor.tokenizer.batch_decode(labels,
-                                                     skip_special_tokens=True)
-        # 避免空字符串导致 jiwer 抛错
-        label_str = [ref if ref.strip() else " " for ref in label_str]
-
-        # 3) 计算 WER（先参考，后预测的顺序）
-        wer = jiwer_wer(label_str, pred_str)
+        pred_str = processor.tokenizer.batch_decode(pred_ids, skip_special_tokens=True)
+        label_str = processor.tokenizer.batch_decode(labels, skip_special_tokens=True)
+        label_str = [ref if ref.strip() != "" else " " for ref in label_str]
+        wer = wer_metric.compute(predictions=pred_str, references=label_str)
+        debug_print(f"Computed WER: {wer}")
         return {"wer": wer}
     return compute_metrics
-
 
 # -------------------- 新的 ModelCheckpointManager 类 --------------------
 class ModelCheckpointManager:
@@ -302,20 +290,14 @@ def main(args):
     eval_dataset = tmp2["test"]
     debug_print(f"Dataset sizes - Train: {len(train_dataset)}, Eval: {len(eval_dataset)}, Test: {len(test_dataset)}")
 
-    processor = Wav2Vec2Processor.from_pretrained(
-        args.pretrained_processor,
-        local_files_only=True
-    )
+    processor = Wav2Vec2Processor.from_pretrained(args.pretrained_processor)
     model = Wav2Vec2ForCTC.from_pretrained(
         args.pretrained_model,
         ctc_loss_reduction="mean",    # 使用平均CTC Loss
         ctc_zero_infinity=True,       # 开启 zero_infinity 防止梯度爆炸
         pad_token_id=processor.tokenizer.pad_token_id,
-        local_files_only=True
     )
-    local_rank = int(os.getenv("LOCAL_RANK", 0))  # torchrun 会写入
-    device = torch.device(f"cuda:{local_rank}" if torch.cuda.is_available() else "cpu")
-    model.to(device)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     debug_print(f"Using device: {device}")
     model.to(device)
     model.freeze_feature_encoder()
@@ -388,18 +370,18 @@ def main(args):
 
 # -------------------- Colab模式下参数配置 --------------------
 class ColabArgs:
-    transcription_excel = "Trans.xlsx"
-    raw_audio_folder = "Pretrain"
-    pretrained_processor = "/home/users/xyang2/wav2vec2_AD/wav2vec2_xlsr53"
-    pretrained_model = "/home/users/xyang2/wav2vec2_AD/wav2vec2_xlsr53"
-    output_dir = "out"
-    best_model_dir = "best"
-    num_train_epochs = 100
+    transcription_excel = "/content/drive/MyDrive/Fine tune/Data/Day1/Trans.xlsx"
+    raw_audio_folder = "/content/drive/MyDrive/Fine tune/Data/Day1/Pretrain"
+    pretrained_processor = "jonatasgrosman/wav2vec2-large-xlsr-53-english"
+    pretrained_model = "jonatasgrosman/wav2vec2-large-xlsr-53-english"
+    output_dir = "/content/drive/MyDrive/Fine tune/wav2vec2_R/TestModel6"
+    best_model_dir = "/content/drive/MyDrive/Fine tune/wav2vec2_R/TestModel6/bestModel1"
+    num_train_epochs = 50
     per_device_train_batch_size = 4
     gradient_accumulation_steps = 2
     learning_rate = 5e-5
     warmup_ratio = 0.05
-    save_total_limit = 6
+    save_total_limit = 3
     weight_decay = 0.005
     sr = 16000
     fp16 = True
