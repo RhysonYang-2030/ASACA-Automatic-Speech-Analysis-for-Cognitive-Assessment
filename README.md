@@ -36,7 +36,7 @@ asaca-cli infer path/to/audio.wav -o out/
 Alternatively install in editable mode for development:
 
 ```bash
-git clone https://github.com/ProfYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
+git clone https://github.com/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
 cd ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
 pip install -e .[dev]
 ```
