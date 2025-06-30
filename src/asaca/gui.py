@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 # speech analysis for cognitive assenment  ASACA
 import sys
+try:
+    sys.argv.remove("gui")      # 删除第一次出现的 "gui"
+except ValueError:
+    pass                        # 没找到就跳过
 import os
 import shutil
 import time
@@ -37,8 +41,7 @@ from reportlab.pdfbase.pdfmetrics import stringWidth
 
 import joblib
 from asaca.cognition.cognition_inference import CognitionClassifier
-if len(sys.argv) > 1 and sys.argv[1] == "gui":
-    sys.argv.pop(1)
+
 # ======================= 加载配置文件 ===========================
 def loadConfig():
     """
