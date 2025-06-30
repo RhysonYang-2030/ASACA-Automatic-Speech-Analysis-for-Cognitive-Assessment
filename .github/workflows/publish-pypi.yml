@@ -6,17 +6,19 @@ on:
 
 jobs:
   build-and-publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+
     steps:
       - uses: actions/checkout@v4
-      - uses: pypa/cibuildwheel@v2.16.0
-        env:
-          CIBW_SKIP: "pp* cp36-* cp37-*"
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install build twine
-      - run: python -m build
+          cache: "pip"
+
+      - run: pip install build
+      - run: python -m build  # creates dist/*.whl + dist/*.tar.gz
+
       - name: Upload to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
