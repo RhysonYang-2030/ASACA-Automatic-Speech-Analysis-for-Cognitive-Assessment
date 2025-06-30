@@ -19,6 +19,7 @@ dependencies = [
     "tqdm>=4.66",
     "sympy>=1.12",
     "torch",
+    "torchvision",
     "torchaudio",
     "scikit-learn>=1.4",
     "transformers>=4.38",
