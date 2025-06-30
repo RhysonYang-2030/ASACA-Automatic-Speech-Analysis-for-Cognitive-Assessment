@@ -37,7 +37,8 @@ from reportlab.pdfbase.pdfmetrics import stringWidth
 
 import joblib
 from asaca.cognition.cognition_inference import CognitionClassifier
-
+if len(sys.argv) > 1 and sys.argv[1] == "gui":
+    sys.argv.pop(1)
 # ======================= 加载配置文件 ===========================
 def loadConfig():
     """
