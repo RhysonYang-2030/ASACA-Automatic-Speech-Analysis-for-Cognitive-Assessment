@@ -22,9 +22,10 @@ jobs:
           name: coverage-${{ matrix.os }}  # coverage-ubuntu-latest / coverage-windows-latest
           path: coverage.xml
           
-      - run: |
-          echo "HEAD   = $(git rev-parse --abbrev-ref HEAD)"
-          echo "PWD    = $PWD"
+      - name: Debug workspace
+        run: |
+          echo "HEAD   = $(git rev-parse --short HEAD)"
+          echo "BRANCH = $(git rev-parse --abbrev-ref HEAD)"
           ls -al
 
       - uses: actions/setup-python@v5
