@@ -32,9 +32,9 @@ praat:
     exe_path: "Praat.exe"
 
 "cognition": {
-    "model_pkl": "cognition_training/classifier.pkl",
-    "dict_dir": "dicts",
     "pretrained_processor": "Models",
     "pretrained_model": "Models",
+    "model_pkl": "cognition_training/classifier.pkl",
+    "dict_dir": "dicts",
     "feature_xlsx": "cognition_training/TUH_FV_Improved.xlsx",
 }
