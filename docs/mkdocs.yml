@@ -6,4 +6,6 @@ plugins:
   - mkdocstrings
 nav:
   - Home: index.md
+  - Installation: installation.md
+  - Tutorials: tutorials.md
   - API: reference.md

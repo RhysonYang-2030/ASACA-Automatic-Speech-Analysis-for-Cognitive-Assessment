@@ -1,7 +1,7 @@
 {
   "name": "ASACA",
   "image": "mcr.microsoft.com/devcontainers/python:3.10",
-  "postCreateCommand": "pip install -e .[full] && pre-commit install",
+  "postCreateCommand": "pip install -e .[dev] && pre-commit install",
   "customizations": {
     "vscode": {
       "extensions": [
