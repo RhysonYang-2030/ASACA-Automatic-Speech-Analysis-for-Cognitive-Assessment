@@ -33,7 +33,7 @@ nltk
 # ↓ Visualisation & plotting
 matplotlib>=3.7
 pillow>=10.2
-shap>=0.44                  
+shap                
 
 # ↓ GUI
 PyQt5>=5.15                  
