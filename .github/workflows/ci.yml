@@ -13,17 +13,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest, ubuntu-latest]
         python-version: ["3.11"]
     steps:                        
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
     
       - name: Debug workspace
         run: |
           echo "HEAD   = $(git rev-parse --short HEAD)"
           echo "BRANCH = $(git rev-parse --abbrev-ref HEAD)"
           
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
