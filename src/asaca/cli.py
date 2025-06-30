@@ -20,13 +20,13 @@ def _add_model_args(p: argparse.ArgumentParser) -> None:
     p.add_argument(
         "--processor",
         type=str,
-        default=str(Path("Models/processor")),  # edit to your default
+        default=str(Path("Models")),  # edit to your default
         help="Path or 🤗 model ID of the Wav2Vec2 processor (default: %(default)s)",
     )
     p.add_argument(
         "--model",
         type=str,
-        default=str(Path("Models/model")),  # edit to your default
+        default=str(Path("Models")),  # edit to your default
         help="Path or 🤗 model ID of the fine-tuned acoustic model (default: %(default)s)",
     )
 
@@ -53,7 +53,7 @@ def main(argv: list[str] | None = None) -> int:
     p_feat.add_argument(
         "--out",
         type=Path,
-        default=Path("features.xlsx"),
+        default=Path("cognition_training/TUH_FV_Improved.xlsx"),
         help="Destination Excel/CSV with features (default: %(default)s)",
     )
     p_feat.add_argument(
