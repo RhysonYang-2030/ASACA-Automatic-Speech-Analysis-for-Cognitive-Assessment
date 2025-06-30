@@ -20,7 +20,7 @@ an interpretable prediction ( *HC / MCI / AD* ).
 | **Rich feature set** | word-error rate, syllable rate, pause stats, spectral cues |
 | **Offline-ready** | Model weights stored under `Models/` via Git LFS |
 | **PEP 517/621 packaging** | `pip install asaca` or editable mode |
-| **Future-proof docs** | MkDocs with Material theme |
+
 
 ---
 
