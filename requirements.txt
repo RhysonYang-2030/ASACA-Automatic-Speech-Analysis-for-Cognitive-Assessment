@@ -28,7 +28,7 @@ pyctcdecode>=0.5
 jiwer>=3.0                   
 pyannote.audio>=3.1         
 pyannote.core>=5.0
-
+nltk
 # ↓ Visualisation & plotting
 matplotlib>=3.7
 pillow>=10.2
