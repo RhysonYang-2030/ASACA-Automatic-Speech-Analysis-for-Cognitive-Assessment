@@ -6,8 +6,8 @@ tqdm>=4.66
 sympy>=1.12
 
 # ML / deep-learning
-torch>=2.0
-torchaudio>=2.0
+torch
+torchaudio
 scikit-learn>=1.4
 transformers>=4.38
 datasets>=2.18
