@@ -34,7 +34,7 @@ praat:
 "cognition": {
     "pretrained_processor": "xyang2/ASACA_ASR",
     "pretrained_model": "xyang2/ASACA_ASR",
-    "model_pkl": "cognition_training/classifier.pkl",
+    "model_pkl": "../cognition_training/classifier.pkl",
     "dict_dir": "dicts",
     "feature_xlsx": "cognition_training/TUH_FV_Improved.xlsx",
 }
