@@ -44,20 +44,29 @@ from asaca.cognition.cognition_inference import CognitionClassifier
 
 # ======================= 加载配置文件 ===========================
 def loadConfig():
-    """
-    如果 config.json 存在，则加载配置；否则返回默认配置（仅包含推理相关路径）。
-    """
+    """Load ``config.json`` if present and fall back to defaults when needed."""
+
     config_path = "config.json"
+    defaults = {
+        "pretrained_processor": "xyang2/ASACA_ASR",
+        "pretrained_model": "xyang2/ASACA_ASR",
+        "output_dir": "output",
+    }
+
     if os.path.exists(config_path):
-        with open(config_path, "r", encoding="utf-8") as f:
-            config = json.load(f)
-        return config
-    else:
-        return {
-            "pretrained_processor": "xyang2/ASACA_ASR",
-            "pretrained_model": "xyang2/ASACA_ASR",
-            "output_dir": "output"
-        }
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                cfg = json.load(f)
+        except Exception as e:
+            print(f"Warning: failed to load {config_path}: {e}. Using defaults.")
+            return defaults.copy()
+
+        for k, v in defaults.items():
+            if not cfg.get(k):
+                cfg[k] = v
+        return cfg
+
+    return defaults.copy()
 
 
 def mergeConfig(args, config):
