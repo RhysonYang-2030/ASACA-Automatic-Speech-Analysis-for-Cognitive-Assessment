@@ -407,10 +407,12 @@ def decode_text(
 
     try:
         return ctc_decoder.beam_search(probs, chars, **kwargs)
-    except IndexError as e:  # mis-match safety-net
+    except (IndexError, ValueError) as e:  # mis-match or invalid alphabet
         # fallback to best-path to avoid crash
-        debug_print(f"[decode_text] Beam-search failed ({e}); "
-                    f"falling back to best_path.")
+        debug_print(
+            f"[decode_text] Beam-search failed ({e}); "
+            f"falling back to best_path."
+        )
         return ctc_decoder.best_path(probs, chars)
 
 
