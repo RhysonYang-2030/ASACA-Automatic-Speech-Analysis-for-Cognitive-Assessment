@@ -54,8 +54,8 @@ def loadConfig():
         return config
     else:
         return {
-            "pretrained_processor": "Models",
-            "pretrained_model": "Models",
+            "pretrained_processor": "xyang2/ASACA_ASR",
+            "pretrained_model": "xyang2/ASACA_ASR",
             "output_dir": "output"
         }
 
