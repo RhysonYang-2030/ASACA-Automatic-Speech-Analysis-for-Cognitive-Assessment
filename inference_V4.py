@@ -46,7 +46,7 @@ from jiwer import wer
 from scipy.signal import medfilt
 from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
 import ctc_segmentation as cs
-from ctc_decoder import beam_search, best_path
+from pyctcdecoder import beam_search, best_path
 import pandas as pd
 import inspect
 from types import SimpleNamespace
@@ -326,10 +326,10 @@ def get_chars_from_model_config(model, processor) -> str:
 # 9 · helper: align probability matrix so that blank = last column
 # --------------------------------------------------------------------------- #
 # --------------------------------------------------------------------------- #
-# helper: make probs & chars compatible with ctc_decoder                      #
+# helper: make probs & chars compatible with pyctcdecoder                      #
 # --------------------------------------------------------------------------- #
 # --------------------------------------------------------------------------- #
-# helper: align probs & chars for ctc_decoder                                 #
+# helper: align probs & chars for pyctcdecoder                                 #
 # --------------------------------------------------------------------------- #
 def _prep_decoder_inputs(
     logits: torch.Tensor,
@@ -389,9 +389,9 @@ def decode_text(
     chars : str of length C-1  (blank excluded)
     decoder_method : "beam_search" | "best_path"
     lm_text : optional str  → used only if the installed
-              `ctc_decoder.beam_search` supports the arg.
+              `pyctcdecoder.beam_search` supports the arg.
     """
-    import ctc_decoder  # local import avoids hard dep at module import
+    import pyctcdecoder as ctc_decoder  # local import avoids hard dep at module import
 
     if decoder_method == "best_path":
         return ctc_decoder.best_path(probs, chars)
@@ -723,8 +723,8 @@ def run_inference_and_seg(audio_path: str,
 
 # ======================= 参数配置 & 主函数 =======================
 class args:
-    pretrained_processor = "epoch 27"
-    pretrained_model = "epoch 27"
+    pretrained_processor = "xyang2/ASACA_ASR"
+    pretrained_model = "xyang2/ASACA_ASR"
     test_audio_path = "Mei_CT/SC001 IMAGE.wav"
     output_dir = "output"
     plot_output_dir = "output"
