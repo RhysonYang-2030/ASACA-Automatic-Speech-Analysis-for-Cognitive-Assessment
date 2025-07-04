@@ -30,7 +30,7 @@ Install the package from PyPI and run inference on a WAV file:
 
 ```bash
 pip install asaca
-asaca-cli infer path/to/audio.wav -o out/
+asaca-cli gui
 ```
 
 Alternatively install in editable mode for development:
