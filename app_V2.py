@@ -732,8 +732,10 @@ class MainWindow(QMainWindow):
     def _loadCognitionClassifier(self):
         cfg = self.cfg.get("cognition", {})       # add this block to config.json later
         try:
+            base_dir = Path(__file__).resolve().parent
+            default_pkl = base_dir / "cognition_training" / "classifier.pkl"
             self.cogCls = CognitionClassifier(
-                model_pkl      = Path(cfg.get("model_pkl",  "cognition_training/classifier.pkl")),
+                model_pkl      = Path(cfg.get("model_pkl",  str(default_pkl))),
                 dict_dir       = Path(cfg.get("dict_dir",   "dicts")),
                 processor_path = cfg.get("pretrained_processor", self.cfg["pretrained_processor"]),
                 asr_model_path = cfg.get("pretrained_model",     self.cfg["pretrained_model"]),
