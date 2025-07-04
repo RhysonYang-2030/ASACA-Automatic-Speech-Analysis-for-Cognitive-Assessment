@@ -10,4 +10,4 @@ def extract_features(*a, **k):
     return _impl(*a, **k)
 
 __all__ = ["run_inference_and_seg", "extract_features"]
-__version__ = "0.1.2"
+__version__ = "0.1.3"
