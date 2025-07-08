@@ -32,6 +32,9 @@ Install the package from PyPI and run inference on a WAV file:
 pip install asaca
 asaca-cli infer path/to/audio.wav -o out/
 ```
+The first run automatically downloads the fine-tuned ASR model from
+[Hugging Face](https://huggingface.co/xyang2/ASACA_ASR) along with the
+required NLTK corpora.
 
 Alternatively install in editable mode for development:
 
