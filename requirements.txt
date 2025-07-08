@@ -21,13 +21,12 @@ librosa>=0.10
 resampy>=0.4
 ctc-segmentation>=1.7
 
+webrtcvad
+praat-parselmouth
+pronouncing>=0.2
 ctc-decoder @ git+https://github.com/githubharald/CTCDecoder.git@6b5c3dd
-webrtcvad                  
-praat-parselmouth  
-pronouncing>=0.2            
-pyctcdecode>=0.5            
-jiwer>=3.0                   
-pyannote.audio>=3.1         
+jiwer>=3.0
+pyannote.audio>=3.1
 pyannote.core>=5.0
 nltk
 # ↓ Visualisation & plotting

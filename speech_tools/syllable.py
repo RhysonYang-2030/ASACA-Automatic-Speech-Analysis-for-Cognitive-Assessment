@@ -18,6 +18,11 @@ import re, statistics
 from typing import Dict, Tuple, List, Optional,Any
 import librosa, numpy as np, parselmouth
 from numpy.typing import NDArray
+import nltk
+try:
+    nltk.data.find("corpora/cmudict")
+except LookupError:  # pragma: no cover - network during install
+    nltk.download("cmudict", quiet=True)
 from nltk.corpus import cmudict
 from speech_tools.config import CFG
 

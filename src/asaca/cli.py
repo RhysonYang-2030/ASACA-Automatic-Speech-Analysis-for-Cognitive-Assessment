@@ -20,13 +20,13 @@ def _add_model_args(p: argparse.ArgumentParser) -> None:
     p.add_argument(
         "--processor",
         type=str,
-        default=str(Path("Models")),  # edit to your default
+        default="xyang2/ASACA_ASR",  # Hugging Face model ID
         help="Path or 🤗 model ID of the Wav2Vec2 processor (default: %(default)s)",
     )
     p.add_argument(
         "--model",
         type=str,
-        default=str(Path("Models")),  # edit to your default
+        default="xyang2/ASACA_ASR",  # Hugging Face model ID
         help="Path or 🤗 model ID of the fine-tuned acoustic model (default: %(default)s)",
     )
 

@@ -726,8 +726,8 @@ def run_inference_and_seg(audio_path: str,
 
 # ======================= 参数配置 & 主函数 =======================
 class args:
-    pretrained_processor = "epoch 27"
-    pretrained_model = "epoch 27"
+    pretrained_processor = "xyang2/ASACA_ASR"
+    pretrained_model = "xyang2/ASACA_ASR"
     test_audio_path = "Mei_CT/SC001 IMAGE.wav"
     output_dir = "output"
     plot_output_dir = "output"
