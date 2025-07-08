@@ -20,7 +20,7 @@ def best_path(mat: np.ndarray, chars: str) -> str:
     return "".join(out)
 
 
-def beam_search(mat: np.ndarray, chars: str, beam_width: int = 25, lm_text: Optional[str] = None) -> str:
+def beam_search(mat: np.ndarray, chars: str, beam_width: int = 128, lm_text: Optional[str] = None) -> str:
     """Simple prefix beam search decoder.
 
     Parameters
