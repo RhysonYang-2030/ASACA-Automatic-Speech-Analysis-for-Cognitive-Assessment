@@ -33,7 +33,6 @@ dependencies = [
     "webrtcvad",
     "praat-parselmouth>=0.4",
     "pronouncing>=0.2",
-    "pyctcdecode>=0.5",
     "jiwer>=3.0",
     "pyannote.audio>=3.1",
     "pyannote.core>=5.0",
