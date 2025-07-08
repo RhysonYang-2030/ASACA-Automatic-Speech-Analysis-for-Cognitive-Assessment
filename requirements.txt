@@ -24,7 +24,6 @@ ctc-segmentation>=1.7
 webrtcvad                  
 praat-parselmouth  
 pronouncing>=0.2            
-pyctcdecode>=0.5            
 jiwer>=3.0                   
 pyannote.audio>=3.1         
 pyannote.core>=5.0

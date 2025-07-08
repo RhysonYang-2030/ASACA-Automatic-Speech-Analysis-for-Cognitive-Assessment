@@ -46,7 +46,7 @@ from jiwer import wer
 from scipy.signal import medfilt
 from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
 import ctc_segmentation as cs
-from pyctcdecoder import beam_search, best_path
+from ctc_decoder import beam_search, best_path
 import pandas as pd
 import inspect
 from types import SimpleNamespace
@@ -388,10 +388,9 @@ def decode_text(
     probs : np.ndarray [T,C]   (blank = last column!!)
     chars : str of length C-1  (blank excluded)
     decoder_method : "beam_search" | "best_path"
-    lm_text : optional str  → used only if the installed
-              `pyctcdecoder.beam_search` supports the arg.
+    lm_text : optional str  → ignored in the built-in decoder.
     """
-    import pyctcdecoder as ctc_decoder  # local import avoids hard dep at module import
+    import ctc_decoder  # local import avoids hard dep at module import
 
     if decoder_method == "best_path":
         return ctc_decoder.best_path(probs, chars)
