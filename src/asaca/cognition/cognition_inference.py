@@ -48,7 +48,7 @@ class CognitionClassifier:
             self.explainer = shap.LinearExplainer(
                 self.pipe.named_steps["clf"],   # final LR estimator
                 X_bg,
-                feature_perturbation="independent"
+                feature_perturbation="interventional"
             )
 
     # ------------------------------------------------------------------
