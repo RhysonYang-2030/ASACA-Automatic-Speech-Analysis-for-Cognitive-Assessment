@@ -410,6 +410,8 @@ class InferenceResultWidget(QWidget):
         # ---------- SHAP 图占位 ----------
         self.shapImg = QLabel(alignment=Qt.AlignCenter)
         self.shapImg.setVisible(False)  # 默认隐藏，勾选后再显示
+        self.shapImg.setMaximumHeight(260)
+        self.shapImg.setScaledContents(True)
         rightBox.addWidget(self.shapImg, 2)
         # ---------------------------------
 
@@ -771,12 +773,18 @@ class MainWindow(QMainWindow):
         pred = None
         if hasattr(self, "cogCls"):
             if self.inferenceTab.cogCheck.isChecked():  # user wants label
-                pred = self.cogCls.predict_label(Path(self.currentAudioPath))
+                pred = self.cogCls.predict_label(
+                    transcription=annotated_text,
+                    global_feats=global_features,
+                )
                 self.inferenceTab.riskLabel.setText(f"Cognition: {pred}")
                 global_features["cognition_prediction"] = pred
             else:
                 # still get class name for SHAP, but don’t overwrite risk label
-                pred = self.cogCls.predict_label(Path(self.currentAudioPath))
+                pred = self.cogCls.predict_label(
+                    transcription=annotated_text,
+                    global_feats=global_features,
+                )
 
         self.tabs.setCurrentWidget(self.inferenceTab)
         self.progressBar.setVisible(False)
@@ -788,10 +796,19 @@ class MainWindow(QMainWindow):
             shap_png = Path("tmp_shap.png")  # temporary file
             try:
                 self.cogCls.explain(
-                    Path(self.currentAudioPath), pred,
-                    save_png=shap_png
+                    class_name=pred,
+                    save_png=shap_png,
+                    transcription=annotated_text,
+                    global_feats=global_features,
                 )
-                self.inferenceTab.shapImg.setPixmap(QtGui.QPixmap(str(shap_png)))
+                pix = QtGui.QPixmap(str(shap_png))
+                self.inferenceTab.shapImg.setPixmap(
+                    pix.scaled(
+                        self.inferenceTab.shapImg.size(),
+                        Qt.KeepAspectRatio,
+                        Qt.SmoothTransformation,
+                    )
+                )
                 self.inferenceTab.shapImg.setVisible(True)  # ← make visible
                 self.inferenceTab.shapPlotPath = str(shap_png)  # ← PDF relies on it
                 global_features["shap_plot"] = str(shap_png)  # for PDF
