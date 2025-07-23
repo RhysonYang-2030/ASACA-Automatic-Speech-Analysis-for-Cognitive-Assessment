@@ -39,6 +39,8 @@ Alternatively install in editable mode for development:
 git clone https://github.com/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
 cd ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment
 pip install -e .[dev]
+pip install numpy==1.24.4
+
 ```
 
 The CLI outputs recognised text along with a PDF report and JSON file in the
