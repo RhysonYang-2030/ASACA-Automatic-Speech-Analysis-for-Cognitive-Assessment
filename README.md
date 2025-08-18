@@ -15,7 +15,7 @@ an interpretable prediction ( *HC / MCI / AD* ) and low Word error rate transcri
 | Capability | Detail |
 |------------|--------|
 | **Single-command inference** | `asaca run audio.wav` outputs JSON + PDF report |
-| **Fine-tuned wav2vec 2.0 ASR** | < 2 % WER on in-domain test set |
+| **Fine-tuned wav2vec 2.0 ASR** | < 10 % WER on in-domain test set |
 | **Explainability** | SHAP plots per classification |
 | **Rich feature set** | word-error rate, syllable rate, pause stats, spectral cues |
 | **Offline-ready** | Model weights stored under `Models/` via Git LFS |
