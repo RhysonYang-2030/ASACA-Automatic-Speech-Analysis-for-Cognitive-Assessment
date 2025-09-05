@@ -48,7 +48,7 @@ specified output directory.
 
 ## Usage
 
-![Pipeline](docs/img/pipeline.png)
+![Pipeline](docs/img/pipeline_updated.png)
 
 ```text
 asaca/
