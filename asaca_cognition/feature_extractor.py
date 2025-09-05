@@ -75,6 +75,30 @@ def extract_features(
         "token_count": n_tok,
         "dict_counts": (hc, ad, mci),
     }
+
+# ----------------------------------------------------------------------
+def build_feature_vector(
+    transcription: str,
+    global_feats: Dict,
+    dict_bank: CognitionDictionaryBank,
+) -> Tuple[np.ndarray, Dict]:
+    """Construct feature vector from pre-computed ASACA results."""
+    tokens = preprocess(transcription)
+    n_tok = max(1, len(tokens))
+    hc, ad, mci = dict_bank.count_hits(tokens)
+
+    hc_r = hc / n_tok
+    ad_r = ad / n_tok
+    mci_r = mci / n_tok
+
+    part1 = np.array([global_feats.get(k, 0.0) for k in SCALAR_KEYS], dtype=float)
+    part2 = np.array([1.0, hc, ad, mci, hc_r, ad_r, mci_r], dtype=float)
+
+    return np.concatenate([part1, part2]), global_feats | {
+        "transcription": transcription,
+        "token_count": n_tok,
+        "dict_counts": (hc, ad, mci),
+    }
 # ----------------------------------------------------------------------
 def batch_build_feature_file(
     meta_xlsx: Path,
