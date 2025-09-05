@@ -64,16 +64,7 @@ Run `asaca-cli --help` to see all commands including feature extraction.
 ## Documentation
 Full API reference and user guide live in the [`docs/`](docs/) directory and on [Read the Docs](https://example.com/).
 
-## Docker
 
-Build the image and run inference in an isolated environment:
-
-```bash
-docker build -t asaca .
-docker run --rm -v "$PWD:/data" asaca asaca-cli infer /data/audio.wav
-```
-
-The container entrypoint defaults to `asaca-cli`.
 
 ## License
 Released under the Apache-2.0 license.
