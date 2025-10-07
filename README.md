@@ -26,14 +26,7 @@ an interpretable prediction ( *HC / MCI / AD* ) and low Word error rate transcri
 
 ## 🚀 Quick start
 
-Install the package from PyPI and run inference on a WAV file:
-
-```bash
-pip install asaca
-asaca-cli gui
-```
-
-Alternatively install in editable mode for development:
+ install in editable mode for development:
 
 ```bash
 git clone https://github.com/RhysonYang-2030/ASACA-Automatic-Speech-Analysis-for-Cognitive-Assessment.git
