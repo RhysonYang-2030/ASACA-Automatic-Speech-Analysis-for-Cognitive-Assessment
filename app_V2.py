@@ -11,8 +11,12 @@ import argparse
 import ctypes
 import numpy as np
 from pathlib import Path
+
+from torch_dll_utils import ensure_torch_dlls
+
+ensure_torch_dlls()
+
 from PyQt5 import QtGui                              # for QPixmap
-from pathlib import Path
 from PyQt5 import QtCore
 # PyQt5 相关导入
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QTabWidget, QVBoxLayout, QHBoxLayout,
@@ -27,7 +31,6 @@ from PyQt5.QtMultimedia import (QAudioRecorder, QAudioEncoderSettings, QAudioPro
 import pyqtgraph as pg
 from PyQt5.QtCore import QT_VERSION_STR
 
-from inference_V4 import run_inference_and_seg
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 # ReportLab 用于生成 PDF 报告
@@ -121,6 +124,7 @@ class InferenceWorker(QThread):
 
     def run(self):
         try:
+            from inference_V4 import run_inference_and_seg  # local import keeps torch bootstrap early
             annotated_text, global_features, dp_info = run_inference_and_seg(
                 self.audioPath,
                 self.model,

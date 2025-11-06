@@ -28,6 +28,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import parselmouth
 import soundfile as sf
+import sys
+import os
+from torch_dll_utils import ensure_torch_dlls
+
+ensure_torch_dlls()
+
 import torch
 from jiwer import wer as jiwer_wer
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
