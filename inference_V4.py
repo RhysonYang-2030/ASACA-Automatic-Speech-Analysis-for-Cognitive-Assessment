@@ -1,18 +1,3 @@
-# ── inference_V3.py  (patched for hybrid VAD · syllable · pause) ──────────────
-"""
-End-to-end inference pipeline for the AD/MCI screening project.
-
-Changes vs. the 2024-11-01 baseline
------------------------------------
-* VAD + examiner removal is now done by `speech_tools.diarize.get_patient_segments`
-  which wraps `pyannote/speaker-diarization-3.1`.
-* Syllable counting calls `speech_tools.syllable.hybrid_syllable_count`.
-* Pause extraction delegates to `speech_tools.pause.detect_pauses`.
-* All thresholds live in `speech_tools/config.yaml`.
-* **Public API is 100 % backward-compatible** – every function defined here
-  keeps the same name and positional arguments as before.
-"""
-
 from __future__ import annotations
 
 import json
@@ -28,6 +13,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import parselmouth
 import soundfile as sf
+import sys
+import os
+from torch_dll_utils import ensure_torch_dlls
+
+ensure_torch_dlls()
+
 import torch
 from jiwer import wer as jiwer_wer
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
@@ -784,3 +775,4 @@ def main(arguments):
 
 if __name__ == "__main__":
     main(args())
+
