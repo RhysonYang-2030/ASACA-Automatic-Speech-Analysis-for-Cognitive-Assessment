@@ -1,3 +1,4 @@
+# ── speech_tools/diarize.py  (v3 – robust silence skipper) ──────────────────
 from __future__ import annotations
 
 import os
@@ -27,8 +28,13 @@ if sys.platform == "win32":
 else:
     _ensure = None
 
-
-from speech_tools.config import CFG
+try:  # Prefer the installed package layout.
+    from asaca.speech_tools.config import CFG  # type: ignore
+except ModuleNotFoundError:  # pragma: no cover - editable installs / legacy tree
+    try:
+        from .config import CFG  # type: ignore
+    except ImportError:  # pragma: no cover - when run from legacy speech_tools pkg
+        from speech_tools.config import CFG  # type: ignore
 
 # --------------------------------------------------------------------------- #
 # helpers
@@ -182,5 +188,3 @@ def get_patient_segments(audio: np.ndarray, sr: int) -> List[Tuple[float, float]
 
 
 get_patient_speech_segments = get_patient_segments
-
-
