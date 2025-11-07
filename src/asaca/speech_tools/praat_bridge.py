@@ -20,7 +20,13 @@ import wave
 from pathlib import Path
 from typing import Dict, List
 import codecs
-from speech_tools.textgrid_utils import build_textgrid
+try:
+    from asaca.speech_tools.textgrid_utils import build_textgrid  # type: ignore
+except ModuleNotFoundError:  # pragma: no cover - editable installs / legacy tree
+    try:
+        from .textgrid_utils import build_textgrid  # type: ignore
+    except ImportError:  # pragma: no cover - legacy "speech_tools" package
+        from speech_tools.textgrid_utils import build_textgrid  # type: ignore
 
 
 # ------------------------------------------------------------------ #
@@ -196,3 +202,4 @@ def run_praat(
         merged: Dict[str, float] = {**nuclei_feats, **extract_feats,
                                     "praat_success": praat_ok}
         return merged
+
