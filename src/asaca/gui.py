@@ -6,6 +6,7 @@ try:
     sys.argv.remove("gui")      # 删除第一次出现的 "gui"
 except ValueError:
     pass                        # 没找到就跳过
+
 import os
 import shutil
 import time
@@ -15,8 +16,12 @@ import argparse
 import ctypes
 import numpy as np
 from pathlib import Path
+
+from torch_dll_utils import ensure_torch_dlls
+
+ensure_torch_dlls()
+
 from PyQt5 import QtGui                              # for QPixmap
-from pathlib import Path
 from PyQt5 import QtCore
 # PyQt5 相关导入
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QTabWidget, QVBoxLayout, QHBoxLayout,
@@ -887,3 +892,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
