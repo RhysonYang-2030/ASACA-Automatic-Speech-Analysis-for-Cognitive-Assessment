@@ -1,15 +1,32 @@
-# ── speech_tools/diarize.py  (v3 – robust silence skipper) ──────────────────
 from __future__ import annotations
 
 import os
 from functools import lru_cache
-from typing import List, Tuple
+from typing import TYPE_CHECKING, List, Tuple
 
 
 import numpy as np
-import torch
-from pyannote.audio import Pipeline
+import sys
+
 from pyannote.core import Annotation
+
+if TYPE_CHECKING:  # pragma: no cover - type checkers only
+    import torch
+    from pyannote.audio import Pipeline
+
+
+if sys.platform == "win32":
+    _ensure = None
+    try:
+        from asaca._torch_dll_utils import ensure_torch_dlls as _ensure
+    except Exception:  # pragma: no cover - optional path
+        try:
+            from torch_dll_utils import ensure_torch_dlls as _ensure
+        except Exception:  # pragma: no cover - optional path
+            _ensure = None
+else:
+    _ensure = None
+
 
 from speech_tools.config import CFG
 
@@ -63,12 +80,18 @@ def _find_leading_trailing_silence(
 
 
 @lru_cache(maxsize=1)
-def _pipe() -> Pipeline:
-    m_id  = CFG["paths"]["diar_model"]
+def _pipe() -> "Pipeline":
+    if sys.platform == "win32" and _ensure is not None:
+        _ensure()
+
+    from pyannote.audio import Pipeline
+    import torch
+
+    m_id = CFG["paths"]["diar_model"]
     token = CFG["paths"].get("hf_token")
-    gpu   = CFG["paths"].get("diar_use_gpu") and torch.cuda.is_available()
+    gpu = CFG["paths"].get("diar_use_gpu") and torch.cuda.is_available()
     os.environ["PYANNOTE_AUDIO_DEVICE"] = "cuda" if gpu else "cpu"
-    pipe  = Pipeline.from_pretrained(m_id, use_auth_token=token)
+    pipe = Pipeline.from_pretrained(m_id, use_auth_token=token)
     pipe.to(torch.device("cuda" if gpu else "cpu"))
     return pipe
 
@@ -127,6 +150,11 @@ def _merge(intv: List[Tuple[float, float]], gap: float) -> List[Tuple[float, flo
 # --------------------------------------------------------------------------- #
 def get_patient_segments(audio: np.ndarray, sr: int) -> List[Tuple[float, float]]:
     # 1) Detect long leading / trailing silence - but keep offsets!
+    if sys.platform == "win32" and _ensure is not None:
+        _ensure()
+
+    import torch
+
     lead, tail = _find_leading_trailing_silence(
         audio,
         sr,
@@ -154,3 +182,5 @@ def get_patient_segments(audio: np.ndarray, sr: int) -> List[Tuple[float, float]
 
 
 get_patient_speech_segments = get_patient_segments
+
+
