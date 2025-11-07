@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+
 # speech analysis for cognitive assenment  ASACA
 import sys
 import os
@@ -11,8 +10,12 @@ import argparse
 import ctypes
 import numpy as np
 from pathlib import Path
+
+from torch_dll_utils import ensure_torch_dlls
+
+ensure_torch_dlls()
+
 from PyQt5 import QtGui                              # for QPixmap
-from pathlib import Path
 from PyQt5 import QtCore
 # PyQt5 相关导入
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QTabWidget, QVBoxLayout, QHBoxLayout,
@@ -890,3 +893,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
