@@ -5,6 +5,8 @@ import os
 from functools import lru_cache
 from typing import TYPE_CHECKING, List, Tuple
 
+import logging
+
 
 import numpy as np
 import sys
@@ -14,6 +16,9 @@ from pyannote.core import Annotation
 if TYPE_CHECKING:  # pragma: no cover - type checkers only
     import torch
     from pyannote.audio import Pipeline
+
+
+log = logging.getLogger(__name__)
 
 
 if sys.platform == "win32":
@@ -151,15 +156,36 @@ def _merge(intv: List[Tuple[float, float]], gap: float) -> List[Tuple[float, flo
     return [(s, e) for s, e in merged]
 
 
-# --------------------------------------------------------------------------- #
-# public
-# --------------------------------------------------------------------------- #
+def _waveform_from_numpy(y_trim: np.ndarray):
+    """Return waveform payload for the diarization pipeline.
+
+    Pyannote expects a Torch tensor, but importing Torch can fail on Windows CI
+    when GPU runtimes are unavailable.  We therefore try to import Torch and
+    fall back to a NumPy array while remembering the import error so the caller
+    can surface a helpful message if the pipeline really needs Torch.
+    """
+
+    torch_error: Exception | None = None
+    try:  # pragma: no branch - success path is the common one in production
+        import torch
+
+        wave = torch.from_numpy(np.asarray(y_trim)).unsqueeze(0)
+        return wave, None
+    except (ImportError, OSError) as exc:
+        torch_error = exc
+        log.debug(
+            "Falling back to NumPy waveform because importing torch failed: %s",
+            exc,
+        )
+
+    wave_np = np.expand_dims(np.asarray(y_trim, dtype=np.float32), axis=0)
+    return wave_np, torch_error
+
+
 def get_patient_segments(audio: np.ndarray, sr: int) -> List[Tuple[float, float]]:
     # 1) Detect long leading / trailing silence - but keep offsets!
     if sys.platform == "win32" and _ensure is not None:
         _ensure()
-
-    import torch
 
     lead, tail = _find_leading_trailing_silence(
         audio,
@@ -172,8 +198,18 @@ def get_patient_segments(audio: np.ndarray, sr: int) -> List[Tuple[float, float]
     y_trim    = audio[cut_start:cut_end]
 
     # 2) Diarise trimmed section
-    wave = torch.from_numpy(y_trim).unsqueeze(0)  # shape (1, time)
-    ann = _pipe()({"waveform": wave, "sample_rate": sr})
+    wave, torch_error = _waveform_from_numpy(y_trim)
+    pipe = _pipe()
+    try:
+        ann = pipe({"waveform": wave, "sample_rate": sr})
+    except Exception as exc:
+        if torch_error is not None:
+            msg = (
+                "PyTorch could not be imported ({}) and is required to run the "
+                "diarization pipeline."
+            ).format(torch_error)
+            raise RuntimeError(msg) from exc
+        raise
 
     # 3) Role assignment
     examiner, patients = _identify_roles(ann)
@@ -188,3 +224,4 @@ def get_patient_segments(audio: np.ndarray, sr: int) -> List[Tuple[float, float]
 
 
 get_patient_speech_segments = get_patient_segments
+
