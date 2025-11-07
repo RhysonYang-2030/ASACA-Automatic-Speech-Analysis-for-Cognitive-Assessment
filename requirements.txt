@@ -20,7 +20,8 @@ soundfile>=0.12
 librosa>=0.10
 resampy>=0.4
 ctc-segmentation>=1.7
-
+syllapy 
+librosa
 webrtcvad                  
 praat-parselmouth  
 pronouncing>=0.2            
